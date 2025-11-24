@@ -143,7 +143,7 @@ function route(string $method, string $pattern, callable $handler): void
     }
     $path = substr($requestUri, strlen($base));
     foreach ($routes as $r) {
-        if ($method !== $_SERVER['REQUEST_METHOD']) {
+        if ($r['method'] !== $_SERVER['REQUEST_METHOD']) {
             continue;
         }
         $patternRegex = '#^' . preg_replace('#\{([a-zA-Z0-9_]+)\}#', '(?P<$1>[^/]+)', $r['pattern']) . '$#';

@@ -49,7 +49,7 @@ async function api(path, options = {}) {
         credentials: 'include',
         ...options,
     };
-    if (opts.body instanceof FormData) {
+    if (opts.body instanceof FormData || opts.body instanceof URLSearchParams) {
         delete opts.headers['Content-Type'];
     }
     const res = await fetch(`${API_BASE}${path}`, opts);
@@ -229,7 +229,7 @@ ui.forms.login?.addEventListener('submit', async e => {
     try {
         const res = await api('/login', {
             method: 'POST',
-            body: JSON.stringify({
+            body: new URLSearchParams({
                 email: form.get('email'),
                 password: form.get('password'),
             })
@@ -245,7 +245,7 @@ ui.forms.ticket?.addEventListener('submit', async e => {
         const itemId = form.get('item_id') || 0;
         await api('/tickets', {
             method: 'POST',
-            body: JSON.stringify({
+            body: new URLSearchParams({
                 item_type: form.get('item_type'),
                 item_id: itemId,
                 descricao: form.get('descricao'),
