@@ -1,0 +1,9 @@
+{
+  "name": "HydroX Rental",
+  "short_name": "HydroX",
+  "start_url": "/celular/public/index.php",
+  "display": "standalone",
+  "background_color": "#0a0c10",
+  "theme_color": "#0ea5e9",
+  "icons": []
+}
